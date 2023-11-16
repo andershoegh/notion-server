@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type NotionDatabaseProperty {
+  name: String!
+  type: NotionDatabasePropertyType!
+}
+
+enum NotionDatabasePropertyType {
+  checkbox
+  created_by
+  created_time
+  date
+  email
+  files
+  formula
+  last_edited_by
+  last_edited_time
+  multi_select
+  number
+  people
+  phone_number
+  relation
+  rich_text
+  rollup
+  select
+  status
+  title
+  unique_id
+  url
+}
+
+type NotionDatabasePage {
+  id: String!
+  featureName: String
+  categoryRefID: String
+  featureGroupRefIDs: [String!]!
+  maturityID: String
+  jobToBeDone: [String!]!
+}
+
+type Query {
+  notionDatabase(id: String!): NotionDatabaseResult
+  notionDatabasePages(databaseID: String!): [NotionDatabasePage!]!
+}
+
+union NotionDatabaseResult = NotionDatabase | NotionDatabaseNotFound
+
+type NotionDatabase {
+  id: String!
+  title: String!
+  url: String!
+  properties: [NotionDatabaseProperty!]!
+}
+
+type NotionDatabaseNotFound {
+  message: String!
+  errorMessage: String
+}
